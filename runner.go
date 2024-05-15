@@ -27,3 +27,10 @@ func Every(duration time.Duration, job cron.Job) {
 func Now(job cron.Job) {
 	go New(job).Run()
 }
+
+func In(duration time.Duration, job cron.Job) {
+	go func() {
+		time.Sleep(duration)
+		New(job).Run()
+	}()
+}
